@@ -5,10 +5,9 @@
 This is due to peer authentication defined in the configuration
 - Find the config file (pg_hba.conf): ```sudo find / -name pg_hba.conf```
 - Edit the file ```sudo nano /etc/postgresql/<version>/main/pg_hba.conf```: peer -> md5
+- Restart the postgres: ```sudo systemctl restart postgres(ql)```
 - Set your password: ```sudo -u postgres psql```
 - Alter password: ```ALTER USER postgres PASSWORD 'yourpassword';```
-
-- Restart the postgres: ```sudo systemctl restart postgres(ql)```
 
 ## Create a new user and database
 ```postgres=# CREATE USER new_user WITH PASSWORD 'secret_password';```
