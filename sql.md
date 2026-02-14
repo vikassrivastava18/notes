@@ -31,8 +31,16 @@ CREATE TABLE user (
 
 ## Insert into database
 ```
-INSERT INTO "users" (username, age, address) VALUES ('vikas', 39, "somewhere in the universe");
+INSERT INTO "users" (username, age, address) VALUES ('vikas', 39, 'somewhere in the universe');
 ```
+
+## Insert multiple values
+```
+INSERT INTO "album" ("title", "year")
+   VALUES
+     ('album 1', 2022),
+     ('album 2', 2000);
+  ```
 
 ## Update an entry
 ```
@@ -46,5 +54,21 @@ WHERE id=1;
 DELETE FROM "users"
 WHERE id=1;
 ```
+
+## Find all the databases in PostgreSQL
+```
+\l
+``` 
+
+## Check a table fileds
+``` 
+\d "artist"
+```
+
+## Show all tables in the database
+```
+\dt
+```
+
 
 
