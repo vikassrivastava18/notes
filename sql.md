@@ -86,7 +86,8 @@ WHERE id=1;
                              |       |
                              +-+-+-+-+
                                | 1-1
-                               | has
+                               | 
+                               | has                        
                                | 0-M
                          +-----------+
                          |  Rating   |
@@ -282,7 +283,32 @@ JOIN (
 ON "book_ratings"."book_id" = "books"."id";
 ```
 
+### DISTINCT
+```
+SELECT DISTINCT "first_name", "last_name"
+from "users";
+```
 
 
+## Alter schemas
+```
+people=# CREATE TABLE "fav" (
+  "id" SERIAL,
+  "oops" TEXT,
+  "post_id" INTEGER REFERENCES "post"("id") ON DELETE CASCADE,
+  PRIMARY KEY("id")
+);
+ALTER TABLE "fav" DROP COLUMN "oops";
+ALTER TABLE "fav" ADD COLUMN "howmuch" INTEGER;
 
-
+CREATE TABLE "post" (
+  "id" SERIAL,
+  "title" VARCHAR(128) UNIQUE NOT NULL,
+  "content" VARCHAR(128), -- WILL extend with alter
+  "account_id" INTEGER REFERENCES "account"("id") ON DELETE CASCADE,
+  "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  "updated_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  PRIMARY KEY("id")
+);
+ALTER TABLE "post" ALTER COLUMN "content" TYPE TEXT;
+```
