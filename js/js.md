@@ -154,3 +154,47 @@ const newProduct = {
 };
 ```
 
+### Asynchronous programming
+One approach to async programming is to make funs take an extra argument, a callback function
+```
+setTimeout(() => console.log("Tick"), 1000);
+```
+
+Promise - Have an asynchronous function return an object that represents it (future) result. This way functions actually return something meaningful, and program resembles that of synchronous programming.
+
+```
+let fifteen = Promise.resolve(15);
+fifteen.then(value => console.log(`Got ${value}`));
+
+function randomFile(listFile) {
+  return textFile(listFile)
+    .then(consent => content.trim().split("\n"))
+    .then(ls => ls[Math.floor(Math.random() * ls.length)])
+    .then(filename => textFile(filename))
+}
+```
+
+Async/Await - Write code that lloks as clean and readable as regular synchronous code.
+
+```
+!Not good code practice due to missing error handling
+async function getUserPosts(userId) {
+  const user = await fetchUser(userId) // Pauses the execution
+  const posts = await fetchPosts(user.id)
+  const comments = await fetchComments(posts[0].id)
+  return { user, posts, comments }
+}
+```
+Other syntaxes
+```
+const fetchData = async function() {
+  return await fetch('/api/data')
+}
+
+const loadData = async () => {
+  return await fetch('/api/data')
+}
+```
+
+
+
