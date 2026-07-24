@@ -9,6 +9,7 @@ Symbols used
 {m} m repetitions
 {m-n}   m-n repetitions   
 ```
+
 Additional Patterns
 ```
 \d  decimal digit
@@ -47,6 +48,7 @@ if matches := re.search(f"^https?://(www\.)?twitter\.com/(.+)", url, re.IGNORECA
 ```
 
 ## OOP
+
 ```
 class Milk:
     def __init__(self, amount):
@@ -113,7 +115,6 @@ class Dog:
 ```
 
 ### Inheritance
-
 ```
 class Vehicle:
     def __init__(self, make, model, year) -> None:
