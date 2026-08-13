@@ -34,6 +34,7 @@ def create_profile(sender, instance, created, **kwargs):
 
 ```
 
+
 ```
 from django.db import models
 from django.contrib.auth.models import User
