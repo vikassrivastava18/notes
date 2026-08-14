@@ -55,4 +55,4 @@ Question: how far can the car go?
 
 
 ### Stage 7 - Generation: the grounded answer
-The assembled promt goes to a generation model to get the appropriate response
+The assembled promt goes to a generation model to get the appropriate grounded response.
