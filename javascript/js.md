@@ -16,7 +16,6 @@ const newProduct = {
   price: 100, // overwrite the price property of product
   category: 'Computing'
 };
-
 ```
 
 ### Rest parameters
