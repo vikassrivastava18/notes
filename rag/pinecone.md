@@ -5,8 +5,8 @@
 ### Create a serverless index
 
 ```
-from pinecone import Pinecone, ServerlessSpec
 
+from pinecone import Pinecone, ServerlessSpec
 pc = Pinecone(api_key="API_KEY")
 
 pc.create_index(
@@ -51,4 +51,41 @@ vectors = [
 ]
 
 Same method - index.upsert(vectors=vectors)
+```
+
+## Accessing vectors
+
+### Fetching
+<p> Retreive vectors based on their IDs</p>
+
+```
+index.fetch(
+    ids=['0', '1']
+)
+``` 
+
+### Querying
+<p> Retreive similar vector to an input vector</p>
+
+```
+index.query(
+    vector=[-0.252224324324, ....],
+    top_k=3,
+    include_values=True # default is False
+)
+```
+
+## Meatadata filtering
+<p>Metadata can be strings, numbers, Booleans and lists of strings.</p>
+
+```
+index.query(
+    vector=[....],
+    filter={
+        "genre": {"$eq": "documentary"},
+        "year": {"$gt": 2019}
+    },
+    top_k=1,
+    include_metadatas=True
+)
 ```
