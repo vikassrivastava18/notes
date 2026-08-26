@@ -89,3 +89,41 @@ index.query(
     include_metadatas=True
 )
 ```
+
+## Update a vector
+
+```
+# Initialize the Pinecone client with your API key
+pc = Pinecone(api_key="...")
+
+index = pc.Index('datacamp-index')
+
+# Update the values of vector ID 7
+index.update(
+    id='7',
+    values=vector,
+    set_metadata={"genre": "thriller"}
+)
+
+# Fetch vector ID 7
+fetched_vector = index.fetch(ids=['7'])
+print(fetched_vector)
+```
+
+## Delete a vector
+
+```
+# Initialize the Pinecone client using your API key
+pc = Pinecone(api_key="...")
+
+index = pc.Index('datacamp-index')
+
+# Delete vectors
+index.delete(
+    ids=["3", "4"]
+)
+
+# Retrieve metrics of the connected Pinecone index
+print(index.describe_index_stats())
+
+```
