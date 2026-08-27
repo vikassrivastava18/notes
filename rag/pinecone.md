@@ -5,7 +5,6 @@
 ### Create a serverless index
 
 ```
-
 from pinecone import Pinecone, ServerlessSpec
 pc = Pinecone(api_key="API_KEY")
 
@@ -125,5 +124,56 @@ index.delete(
 
 # Retrieve metrics of the connected Pinecone index
 print(index.describe_index_stats())
+```
 
+## Batching
+<p>Following solve the rate and size limit issue but could be very slow!
+
+```
+def chunks(iterable, batch_size=100):
+    it = iter(iterable)
+    chunk = tuple(itertools.islice(it, batch_size))
+
+    while chunk:
+        yield chunk
+        chunk = tuple(itertools.islice(it, batch_size))
+
+pc = Pinecone(api_key="key")
+index = pc.Index("datacamp-index")
+
+for chunk in chunks(vectors):
+    index.upsert(vectors=chunk)    
+```
+
+## Parallel batching
+
+```
+pc = Pinecone(api_key="key", pool_threads=30)
+
+with pc.Index("datacamp-index", pool_threads=30) as index:
+    async_results = [index.upsert(vectors=chunk, async_req=True) for chunk in chunks(vectors, batch_size=100)]
+
+    [async_result.get() for async_result in async_results]
+
+```
+
+## Namespace (Multitenancy)
+
+```
+# Initialize the Pinecone client with your API key
+pc = Pinecone(api_key="key")
+
+index = pc.Index('datacamp-index')
+
+# Insert a vector in namespace1 
+index.upsert(
+    vector=vector,
+    namespace="namespace1")
+
+# Query namespace1 with the vector provided
+query_result = index.query(
+    vector=vector, 
+    namespace="namespace1",
+    top_k=3)
+print(query_result)
 ```
