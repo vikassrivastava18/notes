@@ -27,6 +27,7 @@ It is a fixed length dense vector of size say 384 or 1536 carrying the meaning (
 <b>One should try multiple models and check the recall score for a golden dataset to see which model is a good fit.</b>
 
 
+
 ### Faster retreival
 <p>Rather than comparing million chunks with the query (most accurate) on uses ANN (Approximate nearest neighbor search) which uses indexing to achieve this. 
 
