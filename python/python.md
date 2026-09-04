@@ -89,8 +89,46 @@ class Smoothie:
 ```
 
 ### Getters and Setters
+
+```Why we need?```
+<p>If we want to have some validation on an instance attributes, the __init__ method can only perform validation 
+during instance creation and not updation.
+
+
+```
+class Student:
+    def __init__(self, name, house):
+        self.name = name
+        self.house = house
+
+    def __str__(self):
+        return f"{self.name} from {self.house}"
+
+    # Getter for name
+    @property
+    def name(self):
+        return self._name
+
+    # Setter for name
+    @name.setter
+    def name(self, name):
+        if not name:
+            raise ValueError("Invalid name")
+        self._name = name
+
+    @property
+    def house(self):
+        return self._house
+
+    @house.setter
+    def house(self, house):
+        if house not in ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]:
+            raise ValueError("Invalid house")
+        self._house = house
+
 ```
 
+```
 class Dog:
     def __init__(self,  name) -> None:
         self._name = name
@@ -115,6 +153,7 @@ class Dog:
 ```
 
 ### Inheritance
+
 ```
 class Vehicle:
     def __init__(self, make, model, year) -> None:
